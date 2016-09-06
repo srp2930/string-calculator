@@ -1,6 +1,6 @@
 class Calculator
   def add(string)
-    integers = string.gsub("\n", ',').split(',')
-    integers.map(&:to_i).reduce(0, :+)
+    integer_array = string.gsub("\n", ',').split(',')
+    integer_array.map(&:to_i).reduce(0, :+)
   end
 end
