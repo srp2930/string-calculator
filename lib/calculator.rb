@@ -9,7 +9,7 @@ class Calculator
   private
 
   def change_to_array(string)
-    string.split(',')
+    string.scan(/\w/)
   end
 
   def default_delimiters(string)
