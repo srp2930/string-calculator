@@ -25,8 +25,16 @@ describe Calculator do
       expect(subject.add("//;\n1;2")).to eq 3
     end
 
-    it 'should reject negative numbers in the addition process' do
-      expect{subject.add("-1,2,3,-4")}.to raise_error('negatives not allowed: -1, -4')
+    # it 'should reject negative numbers in the addition process' do
+    #   expect{subject.add("-1,2,3,-4")}.to raise_error('negatives not allowed: -1, -4')
+    # end
+
+    it 'edge case - using hyphens as a delimiter should not fail or be mistaken for negatives' do
+      expect(subject.add("//-\n1--2-3-4")).to eq 10
+    end
+
+    it 'edge case - using letters as delimiters should not fail' do
+      expect(subject.add("//a\n1a2a3a4")).to eq 10
     end
   end
 end
