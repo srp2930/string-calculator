@@ -26,7 +26,7 @@ describe Calculator do
     end
 
     it 'should reject negative numbers in the addition process' do
-      expect{subject.add("-1,2,3,-4")}.to raise_error('negatives not allowed')
+      expect{subject.add("-1,2,3,-4")}.to raise_error('negatives not allowed: -1, -4')
     end
   end
 end
