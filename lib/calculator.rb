@@ -1,6 +1,7 @@
 class Calculator
 
   def add(string)
+    raise 'negatives not allowed' if string.include?('-')
     amended_string = default_delimiters(string)
     new_array = change_to_array(amended_string)
     sum_array(new_array)
