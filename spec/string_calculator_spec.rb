@@ -28,5 +28,9 @@ describe Calculator do
     it 'should return correct sum with different delimiters' do
       expect(subject.add("//;\n1;2")).to eq 3
     end
+
+    it 'should reject negative numbers in the addition process' do
+      
+    end
   end
 end
