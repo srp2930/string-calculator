@@ -1,5 +1,6 @@
 class Calculator
   def add(string)
-    string.to_i
+    integers = string.split(',')
+    integers.map(&:to_i).reduce(0, :+)
   end
 end
