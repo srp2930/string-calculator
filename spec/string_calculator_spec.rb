@@ -13,10 +13,6 @@ describe Calculator do
       expect(subject.add("1")).to eq 1
     end
 
-    it 'should return the sum of two numbers' do
-      expect(subject.add("1,2")).to eq 3
-    end
-
     it 'should return the sum of several numbers' do
       expect(subject.add("1,2,3,4,5,6")).to eq 21
     end
@@ -30,7 +26,7 @@ describe Calculator do
     end
 
     it 'should reject negative numbers in the addition process' do
-      
+      expect{subject.add("-1,2,3,-4")}.to raise_error('negatives not allowed')
     end
   end
 end
