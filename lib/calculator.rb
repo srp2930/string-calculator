@@ -1,7 +1,6 @@
 class Calculator
 
   def add(string)
-    raise 'negatives not allowed' if string.include?('-')
     new_array = convert_to_array(string)
     integer_array = convert_elements_to_integers(new_array)
     sum_array(integer_array)
@@ -27,7 +26,12 @@ class Calculator
   end
 
   def sum_array(array)
+    raise 'negatives not allowed' if negatives?(array)
     array.reduce(0, :+)
+  end
+
+  def negatives?(array)
+    array.any?{ |element| element < 0 }
   end
 
 end
