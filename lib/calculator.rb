@@ -13,14 +13,12 @@ class Calculator
     delimiter == ""? "," : delimiter
   end
 
-  def remove_start(string)
+  def remove_start_newlines(string)
     string.gsub(/\/\/.\n/,"").gsub(/\n/, ",")
   end
 
   def convert_to_array(string)
-    string2 = remove_start(string)
-    p string2
-    p '============='
+    string2 = remove_start_newlines(string)
     string2.split(detect_delimiter(string))
   end
 
@@ -29,12 +27,13 @@ class Calculator
   end
 
   def sum_array(array)
-    raise 'negatives not allowed: -1, -4' if negatives?(array)
+    negatives?(array)
     array.reduce(0, :+)
   end
 
   def negatives?(array)
-    array.any?{ |element| element < 0 }
+    negatives = array.select{ |element| element < 0 }
+    raise Exception, "negatives not allowed: #{negatives.join(', ')}" if negatives.length > 0
   end
 
 end
