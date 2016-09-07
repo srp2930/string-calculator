@@ -8,18 +8,18 @@ class Calculator
 
   private
 
-  def detect_delimiter(string)
-    delimiter = string.scan(/(?<=\/\/).(?=\n)/).join
-    delimiter == ""? "," : delimiter
+  def convert_to_array(string)
+    amended_string = remove_start_newlines(string)
+    amended_string.split(detect_delimiter(string))
   end
 
   def remove_start_newlines(string)
     string.gsub(/\/\/.\n/,"").gsub(/\n/, ",")
   end
 
-  def convert_to_array(string)
-    string2 = remove_start_newlines(string)
-    string2.split(detect_delimiter(string))
+  def detect_delimiter(string)
+    delimiter = string.scan(/(?<=\/\/).(?=\n)/).join
+    delimiter == ""? "," : delimiter
   end
 
   def convert_elements_to_integers(array)
@@ -27,11 +27,11 @@ class Calculator
   end
 
   def sum_array(array)
-    negatives?(array)
+    raise_error_if_negatives(array)
     array.reduce(0, :+)
   end
 
-  def negatives?(array)
+  def raise_error_if_negatives(array)
     negatives = array.select{ |element| element < 0 }
     raise Exception, "negatives not allowed: #{negatives.join(', ')}" if negatives.length > 0
   end
