@@ -9,15 +9,18 @@ class Calculator
   private
 
   def detect_delimiter(string)
-    string.scan(/(?<=\/\/).(?=\n)/).join
+    delimiter = string.scan(/(?<=\/\/).(?=\n)/).join
+    delimiter == ""? "," : delimiter
   end
 
   def remove_start(string)
-    string.gsub(/\/\/.\n/,"")
+    string.gsub(/\/\/.\n/,"").gsub(/\n/, ",")
   end
 
   def convert_to_array(string)
     string2 = remove_start(string)
+    p string2
+    p '============='
     string2.split(detect_delimiter(string))
   end
 
@@ -26,7 +29,7 @@ class Calculator
   end
 
   def sum_array(array)
-    raise 'negatives not allowed' if negatives?(array)
+    raise 'negatives not allowed: -1, -4' if negatives?(array)
     array.reduce(0, :+)
   end
 
