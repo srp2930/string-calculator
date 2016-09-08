@@ -14,11 +14,11 @@ class Calculator
   end
 
   def remove_start_newlines(string)
-    string.gsub(/\/\/.\n/,"").gsub(/\n/, ",")
+    string.gsub(/\/\/\[.+\]\n/,"").gsub(/\n/, ",")
   end
 
   def detect_delimiter(string)
-    delimiter = string.scan(/(?<=\/\/).(?=\n)/).join
+    delimiter = string.scan(/(?<=\/\/\[).+(?=\]\n)/).join
     delimiter == ""? "," : delimiter
   end
 

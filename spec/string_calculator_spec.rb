@@ -22,7 +22,7 @@ describe Calculator do
     end
 
     it 'should return correct sum with different delimiters' do
-      expect(subject.add("//;\n1;2")).to eq 3
+      expect(subject.add("//[;]\n1;2")).to eq 3
     end
 
     it 'should reject negative numbers in the addition process' do
@@ -30,11 +30,15 @@ describe Calculator do
     end
 
     it 'edge case - using hyphens as a delimiter should not fail or be mistaken for negatives' do
-      expect(subject.add("//-\n1--2-3-4")).to eq 10
+      expect(subject.add("//[-]\n1--2-3-4")).to eq 10
     end
 
     it 'edge case - using letters as delimiters should not fail' do
-      expect(subject.add("//a\n1a2a3a4")).to eq 10
+      expect(subject.add("//[a]\n1a2a3a4")).to eq 10
+    end
+
+    it 'should handle delimiters of length greater than one' do
+      expect(subject.add("//[***]\n1***2***3")).to eq 6
     end
   end
 end
